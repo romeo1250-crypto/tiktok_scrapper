@@ -1,0 +1,1 @@
+Place your author_avatar.jpg in this folder.

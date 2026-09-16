@@ -1,0 +1,100 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #ffffff;
+    --text-sub: #a0a0a0;
+    --accent: #fe2c55;
+    --accent-secondary: #25f4ee;
+    --border-color: #333333;
+}
+
+body.light-theme {
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #111111;
+    --text-sub: #666666;
+    --border-color: #e0e0e0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.2s, color 0.2s;
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.brand { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 1.2rem; }
+.logo { height: 32px; width: auto; }
+
+.logo1 { height: 120px; width: auto; }
+
+#theme-toggle {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 680px;
+    margin: 60px auto 0;
+    padding: 0 20px;
+    text-align: center;
+}
+
+h1 { font-size: 2rem; margin-bottom: 8px; }
+.subtitle { color: var(--text-sub); margin-bottom: 30px; font-size: 0.95rem; }
+
+.input-group {
+    display: flex;
+    gap: 8px;
+    background: var(--card-bg);
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+input[type="url"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 12px;
+    color: var(--text-color);
+    outline: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.info-card {
+    margin-top: 50px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    text-align: left;
+}
+
+.info-card h2 { font-size: 1.1rem; margin-bottom: 12px; }
+.info-card ol { padding-left: 20px; color: var(--text-sub); line-height: 1.6; }

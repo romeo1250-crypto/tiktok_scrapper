@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZipTok - Download Interactive TikTok Archives</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <header class="navbar">
+        <div class="brand">
+            <img src="ziptok.jpeg" alt="ZipTok Logo" class="logo">
+            <span>ZipTok</span>
+        </div>
+        <button id="theme-toggle" aria-label="Toggle theme">☀️ Light</button>
+    </header>
+
+    <main class="container">
+        <img src="ziptok.jpeg" alt="ZipTok Logo" class="logo1">
+        <h1>TikTok Interactive Downloader</h1>
+        <p class="subtitle">Download TikTok videos along with interactive comments, stickers, and metadata into a single zip bundle.</p>
+
+        <form action="/archive" method="post" class="download-form">
+            <div class="input-group">
+                <input type="url" name="url" placeholder="Paste TikTok video link here..." required autocomplete="off">
+                <button type="submit" class="btn-primary">Download ZIP</button>
+            </div>
+        </form>
+
+        <section class="info-card">
+            <h2>How it works</h2>
+            <ol>
+                <li>Paste the link to any public TikTok video above.</li>
+                <li>Click <strong>Download ZIP</strong> to start processing.</li>
+                <li>Unzip the downloaded file and open <code>index.html</code> to view the full interactive page offline.</li>
+            </ol>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

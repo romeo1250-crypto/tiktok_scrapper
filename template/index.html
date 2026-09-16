@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <title>CatTok — GoPro Cat Tour</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell" aria-label="Short video viewer">
+
+    <!-- Video stage -->
+    <section class="video-page" id="videoPage">
+      <video
+        id="video"
+        class="video"
+        src="videos/mycatstourinmybackyard.mp4"
+        playsinline
+        loop
+        preload="metadata"
+        poster=""
+        aria-label="GoPro footage of a cat exploring the backyard">
+      </video>
+
+      <div class="video-overlay" aria-hidden="true">
+        <div class="top-scrim"></div>
+        <div class="bottom-scrim"></div>
+      </div>
+
+      <!-- Header / feed tabs -->
+      <header class="top-bar">
+        <button class="top-icon" id="liveButton" aria-label="Live">
+          <span class="live-dot"></span>
+        </button>
+
+        <nav class="feed-tabs" aria-label="Feed type">
+          <button class="feed-tab">Following</button>
+          <button class="feed-tab active" aria-current="page">For You</button>
+        </nav>
+
+        <button class="top-icon" id="searchButton" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.4"></circle>
+            <path d="M16 16l5 5"></path>
+          </svg>
+        </button>
+      </header>
+
+      <!-- Right action rail -->
+      <aside class="action-rail" aria-label="Video actions">
+        <button class="profile-button" id="profileButton" aria-label="Open profile">
+          <img
+            src="images/author_avatar.jpg"
+            alt=""
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+          />
+          <span class="avatar-fallback">😺</span>
+          <span class="follow-badge" id="followBadge">+</span>
+        </button>
+
+        <button class="action-button" id="likeButton" aria-label="Like">
+          <span class="action-icon heart-icon">♥</span>
+          <span class="action-count" id="likeCount">5090</span>
+        </button>
+
+        <button class="action-button" id="commentButton" aria-label="Comments">
+          <span class="action-icon comment-icon">●</span>
+          <span class="action-count" id="commentCount">66</span>
+        </button>
+
+        <button class="action-button" id="bookmarkButton" aria-label="Save">
+          <span class="action-icon bookmark-icon">▾</span>
+          <span class="action-count" id="bookmarkCount">505</span>
+        </button>
+
+        <button class="action-button" id="shareButton" aria-label="Share">
+          <span class="action-icon share-icon">↗</span>
+          <span class="action-count" id="shareCount">958</span>
+        </button>
+
+        <button class="music-disc" id="musicButton" aria-label="Sound">
+          <span>♪</span>
+        </button>
+      </aside>
+
+      <!-- Bottom metadata -->
+      <section class="caption-area">
+        <div class="author-line">
+          <strong id="authorName">@catventures</strong>
+          <span class="verified" title="Verified">✓</span>
+        </div>
+
+        <p id="caption" class="caption">
+          My cat's first GoPro tour of the backyard 😂🐈
+          <span class="hashtags">#catsoftiktok #gopro #catadventures #fyp</span>
+        </p>
+
+        <button class="music-line" id="musicLine" aria-label="Open sound">
+          <span class="music-note">♫</span>
+          <span id="soundName">original sound — Cat Ventures</span>
+        </button>
+      </section>
+
+      <!-- Bottom navigation -->
+      <nav class="bottom-nav" aria-label="Primary navigation">
+        <button class="bottom-item active" data-nav="home">
+          <span class="bottom-icon">⌂</span>
+          <span>Home</span>
+        </button>
+        <button class="bottom-item" data-nav="discover">
+          <span class="bottom-icon">⌕</span>
+          <span>Discover</span>
+        </button>
+        <button class="create-button" id="createButton" aria-label="Create">
+          <span class="create-plus">+</span>
+        </button>
+        <button class="bottom-item" data-nav="inbox">
+          <span class="bottom-icon">◔</span>
+          <span>Inbox</span>
+          <span class="nav-badge">3</span>
+        </button>
+        <button class="bottom-item" data-nav="profile">
+          <span class="bottom-icon">○</span>
+          <span>Profile</span>
+        </button>
+      </nav>
+
+      <!-- Progress -->
+      <div class="progress-wrap">
+        <div class="progress-track" id="progressTrack">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <!-- Center play/pause feedback -->
+      <div class="play-indicator" id="playIndicator" aria-hidden="true">
+        <span id="playIndicatorIcon">▶</span>
+      </div>
+
+      <!-- Double-tap heart -->
+      <div class="burst-heart" id="burstHeart" aria-hidden="true">♥</div>
+
+      <!-- Loading -->
+      <div class="loading-indicator" id="loadingIndicator">
+        <span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Comments modal -->
+    <section class="sheet hidden" id="commentsSheet" aria-label="Comments">
+      <div class="sheet-backdrop" data-close-sheet></div>
+      <div class="sheet-panel">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <strong id="sheetCommentTitle">66 comments</strong>
+          <button class="sheet-close" data-close-sheet aria-label="Close comments">×</button>
+        </div>
+
+        <div class="comments-list" id="commentsList">
+          <article class="comment">
+            <div class="comment-avatar">🐾</div>
+            <div class="comment-body">
+              <strong>@pawsome_ke</strong>
+              <p>Bro is literally on a documentary mission 😂</p>
+              <button class="reply-button">Reply</button>
+            </div>
+            <button class="comment-like">♡</button>
+          </article>
+
+          <article class="comment">
+            <div class="comment-avatar">😹</div>
+            <div class="comment-body">
+              <strong>@mimi</strong>
+              <p>The GoPro perspective is actually amazing.</p>
+              <button class="reply-button">Reply</button>
+            </div>
+            <button class="comment-like">♡</button>
+          </article>
+
+          <article class="comment">
+            <div class="comment-avatar">🐈</div>
+            <div class="comment-body">
+              <strong>@backyardcats</strong>
+              <p>10/10 cinematic cat walking tour.</p>
+              <button class="reply-button">Reply</button>
+            </div>
+            <button class="comment-like">♡</button>
+          </article>
+        </div>
+
+        <form class="comment-form" id="commentForm">
+          <input
+            id="commentInput"
+            type="text"
+            maxlength="120"
+            autocomplete="off"
+            placeholder="Add comment..."
+            aria-label="Add comment"
+          />
+          <button type="submit">Post</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Share modal -->
+    <section class="sheet hidden" id="shareSheet" aria-label="Share video">
+      <div class="sheet-backdrop" data-close-sheet></div>
+      <div class="sheet-panel share-panel">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <strong>Share to</strong>
+          <button class="sheet-close" data-close-sheet aria-label="Close share menu">×</button>
+        </div>
+
+        <div class="share-grid">
+          <button class="share-option" data-share="copy"><span>🔗</span><small>Copy link</small></button>
+          <button class="share-option" data-share="whatsapp"><span>💬</span><small>WhatsApp</small></button>
+          <button class="share-option" data-share="x"><span>𝕏</span><small>Post</small></button>
+          <button class="share-option" data-share="email"><span>✉</span><small>Email</small></button>
+          <button class="share-option" data-share="more"><span>⋯</span><small>More</small></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search -->
+    <section class="search-overlay hidden" id="searchOverlay">
+      <form class="search-box" id="searchForm">
+        <input id="searchInput" type="search" placeholder="Search videos" autocomplete="off" />
+        <button type="submit">Search</button>
+      </form>
+      <button class="search-close" id="searchClose">Close</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
